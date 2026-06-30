@@ -4,7 +4,7 @@ import Deps from "./utils/deps";
 import { Config } from "./utils/config";
 import { Session } from "./utils/session";
 import inquirer from "inquirer";
-export class CodexSessionStats {
+export class AISessionAnalytics {
     sessions = {};
     CONFIG = Deps.get(Config).getConfig();
     async init() {
