@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "lib": [
+      "ES2025"
+    ],
+    "types": ["node"],
+    "alwaysStrict": true,
+    "strictNullChecks": true,
+    "noImplicitAny": true
+  },
+  "files": [
+    "src/index.ts"
+  ]
+}
