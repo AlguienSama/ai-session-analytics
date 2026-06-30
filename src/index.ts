@@ -7,7 +7,7 @@ import inquirer from "inquirer";
 
 type PromptOption = { name: string; value: string | null; short: string };
 
-export class CodexSessionStats {
+export class AISessionAnalytics {
   private sessions: { [key: string]: Session } = {};
   private readonly CONFIG = Deps.get(Config).getConfig();
 
