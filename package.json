@@ -1,6 +1,6 @@
 {
   "name": "ai-session-analytics",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Get stats from one or more codex sessions",
   "license": "ISC",
   "author": "Marc Font I Puig",
