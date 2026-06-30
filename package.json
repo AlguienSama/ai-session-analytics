@@ -12,7 +12,7 @@
     "dev:watch": "npx tsx watch src/cli.ts",
     "prepublishOnly": "npm run build"
   },
-  "bin": "dist/cli.js",
+  "bin": "./dist/cli.js",
   "dependencies": {
     "inquirer": "^14.0.2",
     "rc": "^1.2.8"
