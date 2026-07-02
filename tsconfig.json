@@ -5,7 +5,7 @@
     "strict": true,
     "target": "es2025",
     "module": "commonjs",
-    "sourceMap": true,
+    "sourceMap": false,
     "esModuleInterop": true,
     "types": ["node"]
   }

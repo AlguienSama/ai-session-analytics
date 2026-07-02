@@ -4,6 +4,8 @@ import Deps from "./utils/deps";
 import { Config } from "./utils/config";
 import { Session } from "./utils/session";
 import inquirer from "inquirer";
+import { Terminal } from "./utils/terminal";
+import { Codex } from "./methods/codex";
 
 type PromptOption = { name: string; value: string | null; short: string };
 
@@ -33,7 +35,7 @@ export class AISessionAnalytics {
           filePath: path.join(this.CONFIG.codexPath, file.input),
         });
 
-        if (this.CONFIG.currentPath) {
+        if (Boolean(this.CONFIG.currentPath)) {
           if (this.isCurrentPathSession(session)) {
             this.sessions[session.uuid] = session;
           }
@@ -48,7 +50,7 @@ export class AISessionAnalytics {
     const sessionsChoices: PromptOption[] = [];
     Object.keys(this.sessions).forEach((sessionUuid) => {
       sessionsChoices.push({
-        name: `${this.sessions[sessionUuid].day}/${this.sessions[sessionUuid].month}/${this.sessions[sessionUuid].year} ${this.sessions[sessionUuid].time} - ${this.sessions[sessionUuid].summary}`,
+        name: Terminal.formatText(`${this.sessions[sessionUuid].day}/${this.sessions[sessionUuid].month}/${this.sessions[sessionUuid].year} ${this.sessions[sessionUuid].time} - ${this.sessions[sessionUuid].summary}`),
         value: sessionUuid,
         short: sessionUuid,
       });
@@ -66,7 +68,7 @@ export class AISessionAnalytics {
     const prompt = await inquirer.prompt<{ sessions: (string | null)[] }>([
       {
         type: "checkbox",
-        message: `Select all the sessions you want to analyze - Total${this.CONFIG.currentPath ? " current session" : ""}: ${options.length - 1}`,
+        message: `Select all the sessions you want to analyze - Total${Boolean(this.CONFIG.currentPath) ? " current session" : ""}: ${options.length - 1}`,
         name: "sessions",
         choices: options,
         pageSize: 15,
@@ -94,10 +96,15 @@ export class AISessionAnalytics {
       .filter((sessionUuid): sessionUuid is string => sessionUuid !== null)
       .map((sessionUuid) => this.sessions[sessionUuid]);
 
-    console.log("Selected sessions:");
+    console.log("Selected sessions - " + selectedSessions.length);
     selectedSessions.forEach((session) => {
-      console.log(session.uuid);
+      console.log(`${session.uuid} - ${session.summary}`);
     });
+
+    // OUTPUT OPTIONS
+    if (this.CONFIG.options === 'codex') {
+      await Codex.execPrompt(selectedSessions);
+    }
   }
 
   private isCurrentPathSession(session: Session): boolean {

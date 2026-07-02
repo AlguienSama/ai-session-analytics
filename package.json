@@ -1,20 +1,21 @@
 {
   "name": "ai-session-analytics",
-  "version": "0.0.3",
+  "version": "1.0.0",
   "description": "Get stats from one or more codex sessions",
   "license": "ISC",
   "author": "Marc Font I Puig",
   "type": "commonjs",
   "scripts": {
     "build": "npx tsc",
-    "start": "npx tsx src/cli.ts",
-    "dev": "npx tsx watch src/cli.ts",
-    "dev:watch": "npx tsx watch src/cli.ts",
+    "start": "node dist/cli.js",
+    "dev": "ts-node src/cli.ts",
+    "dev:watch": "node --watch -r ts-node/register src/cli.ts",
     "prepublishOnly": "npm run build"
   },
   "bin": "./dist/cli.js",
   "dependencies": {
     "inquirer": "^14.0.2",
+    "ora": "^9.4.1",
     "rc": "^1.2.8"
   },
   "devDependencies": {
