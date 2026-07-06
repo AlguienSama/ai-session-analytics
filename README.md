@@ -19,7 +19,22 @@ npx ai-session-analytics
 | `--codexPath` | `~/.codex/sessions/` | Path to the Codex sessions directory. |
 | `--currentPath` | `true` | Analyze only sessions belonging to the current working directory. |
 | `--resultFile` | `ia_session_analytics_<date>` | Name of the generated report. |
-| `--options` | `codex` | Output format. More formats will be available in future releases. |
+| `--analyzeTools` | `[]` | Tool names to analyze. Empty means all registered tools found in `src/tools`. |
+| `--outputOptions` | `codex` | Output format. More formats will be available in future releases. |
+
+Configuration is loaded with `rc`, so the same values can be passed as CLI flags or saved in a `.codex_session_statsrc` file:
+
+```json
+{
+  "codexPath": "C:/Users/you/.codex/sessions",
+  "currentPath": true,
+  "resultFile": "ia_session_analytics_custom",
+  "analyzeTools": ["codex"],
+  "outputOptions": "codex"
+}
+```
+
+When `analyzeTools` is empty, every registered tool is executed. To limit the run, set it to the tool `type` values you want, for example `["codex"]`.
 
 ## Output
 

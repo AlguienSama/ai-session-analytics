@@ -1,4 +1,4 @@
-import getStats from '../prompts/getStats'
+import getStats from '../utils/prompts/getStats'
 import { spawn } from "node:child_process";
 import ora from 'ora';
 import Deps from '../utils/deps';
@@ -9,7 +9,7 @@ import fs from 'fs';
 
 type SpawnConfig = { command: string; args: string[] };
 
-export class Codex {
+export class CodexOutput {
   static execPrompt(selectedSessions: Session[]): Promise<void> {
     const prompt = JSON.stringify(getStats(selectedSessions.map(s => s.filePath)), null, 2);
     const codexProcess = this.getCodexProcess(["exec", "-o", Deps.get(Config).getConfig().resultFile + ".md", "-"]);

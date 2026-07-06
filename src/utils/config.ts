@@ -1,12 +1,14 @@
 import { homedir } from "node:os";
 import rc from 'rc';
 import { getFormattedDate } from "./utils";
+import { RegisteredTool } from "../tools";
 
 export type ConfigParams = {
   codexPath: string;
   currentPath: boolean | string;
   resultFile: string;
-  options: 'codex';
+  analyzeTools: RegisteredTool[];
+  outputOptions: 'codex';
 }
 
 export class Config {
@@ -14,7 +16,8 @@ export class Config {
   static readonly codexPath: ConfigParams['codexPath'] = homedir() + '/.codex/sessions/';
   static readonly currentPath: ConfigParams['currentPath'] = true;
   static readonly resultFile: ConfigParams['resultFile'] = 'ia_session_analytics_' + getFormattedDate();
-  static readonly options: ConfigParams['options'] = 'codex';
+  static readonly analyzeTools: ConfigParams['analyzeTools'] = [];
+  static readonly outputOptions: ConfigParams['outputOptions'] = 'codex';
 
   private config?: ConfigParams;
 
@@ -38,7 +41,8 @@ export class Config {
       codexPath: Config.codexPath,
       currentPath: Config.currentPath,
       resultFile: Config.resultFile,
-      options: Config.options,
+      analyzeTools: Config.analyzeTools,
+      outputOptions: Config.outputOptions,
     });
   }
 }
