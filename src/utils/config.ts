@@ -10,7 +10,7 @@ export type ConfigParams = {
 }
 
 export class Config {
-  static readonly regexFile = /^(?<year>\d{4})\\(?<month>\d{2})\\(?<day>\d{2})\\rollout-(?<fileDate>\d{4}-\d{2}-\d{2})T(?<time>\d{2}-\d{2}-\d{2})-(?<uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\.jsonl$/;
+  static readonly regexFile = /^(?<year>\d{4})[\\/](?<month>\d{2})[\\/](?<day>\d{2})[\\/]rollout-(?<fileDate>\d{4}-\d{2}-\d{2})T(?<time>\d{2}-\d{2}-\d{2})-(?<uuid>[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12})\.jsonl$/i;
   static readonly codexPath: ConfigParams['codexPath'] = homedir() + '/.codex/sessions/';
   static readonly currentPath: ConfigParams['currentPath'] = true;
   static readonly resultFile: ConfigParams['resultFile'] = 'ia_session_analytics_' + getFormattedDate();
