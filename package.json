@@ -1,10 +1,11 @@
 {
   "name": "ai-session-analytics",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Analyze Codex session logs and generate actionable usage, performance, and workflow analytics",
   "license": "ISC",
   "author": "Marc Font I Puig",
   "type": "commonjs",
+  "repository": "https://github.com/AlguienSama/ai-session-analytics",
   "scripts": {
     "build": "npx tsc",
     "start": "node dist/cli.js",
