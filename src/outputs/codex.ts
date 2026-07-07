@@ -11,7 +11,7 @@ type SpawnConfig = { command: string; args: string[] };
 
 export class CodexOutput {
   static execPrompt(selectedSessions: Session[]): Promise<void> {
-    const prompt = JSON.stringify(getStats(selectedSessions.map(s => s.filePath)), null, 2);
+    const prompt = JSON.stringify(getStats(selectedSessions.map(s => s.content)), null, 2);
     const codexProcess = this.getCodexProcess(["exec", "-o", Deps.get(Config).getConfig().resultFile + ".md", "-"]);
     const child = spawn(codexProcess.command, codexProcess.args, {
       stdio: ['pipe', 'pipe', 'pipe'],

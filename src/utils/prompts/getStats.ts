@@ -1,11 +1,11 @@
-export default (files: string[]) => `
+export default (contents: string[]) => `
 # Codex Session Analysis
 
 ## Input
 
 Analyze the following Codex session logs:
 
-${files.join('\n')}
+${contents.join('\n\n')}
 
 Treat all the provided files as part of the same analysis unless timestamps clearly indicate independent sessions.
 

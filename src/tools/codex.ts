@@ -12,12 +12,19 @@ export class CodexTool extends Tool {
   private getFileContent(filePath: string): Pick<Session, 'content' | 'jsonContent' | 'summary' | 'path'> {
     const content = fs.readFileSync(filePath, { encoding: 'utf-8' });
     const jsonContent: Session['jsonContent'] = JSON.parse(`[${content.split('\n').filter(c => c).join(',')}]`);
+
+    const messageTypes = ['user_message', 'turn_context', 'task_started', 'task_complete'];
+    const summaryContent = jsonContent.filter((c) => messageTypes.some(t => t === c.type));
+
     const userMessage = jsonContent.find(c => c['payload']['type'] === 'user_message')
     const summary = userMessage?.payload.message ?? '';
+
     const sessionMeta = jsonContent.find(c => c['type'] === 'session_meta');
     const path = sessionMeta?.payload.cwd ?? '';
 
-    return { content, jsonContent, summary, path };
+    console.log(JSON.stringify(summaryContent).length, content.length)
+
+    return { content: JSON.stringify(summaryContent), jsonContent, summary, path };
   }
 
   setSessionFiles() {

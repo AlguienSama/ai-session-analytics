@@ -1,6 +1,6 @@
 {
   "name": "ai-session-analytics",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Analyze Codex session logs and generate actionable usage, performance, and workflow analytics",
   "license": "ISC",
   "author": "Marc Font I Puig",

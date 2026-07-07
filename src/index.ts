@@ -78,7 +78,7 @@ export class AISessionAnalytics {
 
     console.log("Selected sessions - " + selectedSessions.length);
     selectedSessions.forEach((session) => {
-      console.log(`${session.uuid} - ${session.summary}`);
+      console.log(Terminal.formatText(`${session.uuid} - ${session.summary}`));
     });
 
     // OUTPUT OPTIONS
