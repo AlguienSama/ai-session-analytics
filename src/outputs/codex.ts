@@ -11,8 +11,9 @@ type SpawnConfig = { command: string; args: string[] };
 
 export class CodexOutput {
   static execPrompt(selectedSessions: Session[]): Promise<void> {
+    const config = Deps.get(Config).getConfig();
     const prompt = JSON.stringify(getStats(selectedSessions.map(s => s.content)), null, 2);
-    const codexProcess = this.getCodexProcess(["exec", "-o", Deps.get(Config).getConfig().resultFile + ".md", "-"]);
+    const codexProcess = this.getCodexProcess(['exec', '-m', config.codexModel, '-c', `model_reasoning_effort=${config.codexReasoning}`, '-o', config.resultFile + '.md', '-']);
     const child = spawn(codexProcess.command, codexProcess.args, {
       stdio: ['pipe', 'pipe', 'pipe'],
     });

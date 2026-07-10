@@ -21,6 +21,8 @@ npx ai-session-analytics
 | `--resultFile` | `ia_session_analytics_<date>` | Name of the generated report. |
 | `--analyzeTools` | `[]` | Tool names to analyze. Empty means all registered tools found in `src/tools`. |
 | `--outputOptions` | `codex` | Output format. More formats will be available in future releases. |
+| `--codexModel` | `gpt-5.4-mini` | Codex model used to generate the report when `outputOptions` is `codex`. |
+| `--codexReasoning` | `low` | Codex reasoning effort when `outputOptions` is `codex`. Allowed values: `minimal`, `low`, `medium`, `high`. |
 
 Configuration is loaded with `rc`, so the same values can be passed as CLI flags or saved in a `.codex_session_statsrc` file:
 
@@ -30,7 +32,9 @@ Configuration is loaded with `rc`, so the same values can be passed as CLI flags
   "currentPath": true,
   "resultFile": "ia_session_analytics_custom",
   "analyzeTools": ["codex"],
-  "outputOptions": "codex"
+  "outputOptions": "codex",
+  "codexModel": "gpt-5.4-mini",
+  "codexReasoning": "low"
 }
 ```
 
